@@ -2,26 +2,27 @@ import { useCallback, useEffect, useState } from "react";
 import { axiosInstant } from "../axios/instance";
 import { useRequest } from "ahooks";
 import { useNavigate } from "react-router-dom";
+import { handlerSetLocal, handlerDeleteLocal, handlerGetLocal } from "../local";
 
 const useAuth = () => {
   const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
 
-  const onLogin = useCallback(async (username: {username:string}) => {
+  const onLogin = useCallback(async (username: { username: string }) => {
     const { data } = await axiosInstant.post(`/auth/login`, username);
     if (data?.accessToken) {
-      localStorage.setItem("accessToken", data?.accessToken);
-      localStorage.setItem("refreshToken", data?.refreshToken);
-      localStorage.setItem("username", username.username);
+      handlerSetLocal("accessToken", data?.accessToken);
+      handlerSetLocal("refreshToken", data?.refreshToken);
+      handlerSetLocal("username", username.username);
       setIsLogin(true);
       navigate("/posts");
     }
   }, []);
 
   const onLogout = useCallback(() => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    localStorage.removeItem("username");
+    handlerDeleteLocal("accessToken");
+    handlerDeleteLocal("refreshToken");
+    handlerDeleteLocal("username");
 
     setIsLogin(false);
     navigate("/");
@@ -37,7 +38,7 @@ const useAuth = () => {
   });
 
   useEffect(() => {
-    setIsLogin(!!localStorage.getItem("accessToken"));
+    setIsLogin(!!handlerGetLocal("accessToken"));
   }, []);
 
   return {

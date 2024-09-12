@@ -1,22 +1,23 @@
 import TokenManager from 'brainless-token-manager';
 import axios from 'axios';
+import { handlerSetLocal,handlerDeleteLocal,handlerGetLocal } from '../local';
 
 const tokenManager = new TokenManager({
   getAccessToken: async () => {
-    const token = localStorage.getItem('accessToken');
+    const token = handlerGetLocal('accessToken');
     return token ? token : '';
   },
   getRefreshToken: async () => {
-    const refreshToken = localStorage.getItem('refreshToken');
+    const refreshToken = handlerGetLocal('refreshToken');
     return refreshToken ? refreshToken : '';
   },
   onInvalidRefreshToken: () => {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
+    handlerDeleteLocal('accessToken');
+    handlerDeleteLocal('refreshToken');
   },
 
   executeRefreshToken: async () => {
-    const refreshToken = localStorage.getItem('refreshToken');
+    const refreshToken = handlerGetLocal('refreshToken');
 
     if (!refreshToken) {
       return {
@@ -38,8 +39,8 @@ const tokenManager = new TokenManager({
   },
   onRefreshTokenSuccess: ({ token, refresh_token }) => {
     if (token && refresh_token) {
-      localStorage.setItem('accessToken', token);
-      localStorage.setItem('refreshToken', refresh_token);
+      handlerSetLocal('accessToken', token);
+      handlerSetLocal('refreshToken', refresh_token);
     }
   },
 });
