@@ -1,8 +1,11 @@
 import { Outlet } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import { useTranslation } from "react-i18next";
 
 const LayoutPost = () => {
   const { onLogout } = useAuth();
+  const { t } = useTranslation();
+
   return (
     <>
       <section>
@@ -29,7 +32,7 @@ const LayoutPost = () => {
               className="hover:opacity-70 hover:cursor-pointer"
               onClick={() => onLogout()}
             >
-              Logout
+              {t('header.logout')}
             </div>
           </div>
         </header>

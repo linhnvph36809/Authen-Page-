@@ -4,9 +4,12 @@ import Heading from "./components/Heading";
 import usePosts from "../../hooks/usePosts";
 import { useEffect } from "react";
 import Loading from "./components/Loading";
+import { useTranslation } from "react-i18next";
 
 const ListPost = () => {
   const { data, loading, error, fetchPosts } = usePosts();
+  const { t } = useTranslation();
+
   console.log(error);
 
   useEffect(() => {
@@ -16,7 +19,7 @@ const ListPost = () => {
   return (
     <>
       <section>
-        <Heading title="List Post" />
+        <Heading title={t('posts.title_list')} />
         <div>
           <Table columns={columns} dataSource={data?.posts} />
         </div>

@@ -29,7 +29,7 @@ const Routes = () => {
           element: <AddPost />,
         },
         {
-          path: "edit:id",
+          path: "edit/:id",
           element: <UpdatePost />,
         },
       ],

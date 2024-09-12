@@ -1,4 +1,5 @@
 import { Button, Form, Input } from "antd";
+import { useTranslation } from "react-i18next";
 
 const FormPost = ({
   onFinish,
@@ -7,6 +8,9 @@ const FormPost = ({
   onFinish: (value: any) => void;
   initialValues?: any;
 }) => {
+
+  const { t } = useTranslation();
+
   return (
     <>
       <Form
@@ -15,13 +19,13 @@ const FormPost = ({
         layout="vertical"
         initialValues={initialValues}
       >
-        <Form.Item label="Name" name="Name ">
+        <Form.Item label={<label>{t("form.title")}</label>} name="Name ">
           <Input className="h-[40px]" />
         </Form.Item>
-        <Form.Item label="Name" name="Name ">
+        <Form.Item label={<label>{t("form.description")}</label>} name="Name ">
           <Input className="h-[40px]" />
         </Form.Item>
-        <Form.Item label="Name" name="Name ">
+        <Form.Item label={<label>{t("form.tags")}</label>} name="Name ">
           <Input className="h-[40px]" />
         </Form.Item>
         <Form.Item className="text-end">
@@ -30,7 +34,7 @@ const FormPost = ({
             className="w-[150px] h-[40px] text-base"
             htmlType="submit"
           >
-            Submit
+            {t("form.btn")}
           </Button>
         </Form.Item>
       </Form>
