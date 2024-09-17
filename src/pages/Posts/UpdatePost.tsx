@@ -5,6 +5,7 @@ import Heading from "./components/Heading";
 import { useParams } from "react-router-dom";
 import Loading from "./components/Loading";
 import { useTranslation } from "react-i18next";
+import { API_POST } from "../../axios/constants";
 
 const UpdatePost = () => {
   const { data, loading, error, fetchPosts } = usePosts();
@@ -14,11 +15,11 @@ const UpdatePost = () => {
   console.log(error);
 
   const onFinish = (value: any) => {
-    fetchPosts(`posts/${id}`, "PUT", value);
+    fetchPosts(API_POST.POST+id, "PUT", value);
   };
 
   useEffect(() => {
-    fetchPosts(`posts/${id}`, "GET");
+    fetchPosts(API_POST.POST+id, "GET");
   }, []);
 
   return (

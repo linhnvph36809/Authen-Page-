@@ -5,6 +5,7 @@ import usePosts from "../../hooks/usePosts";
 import { useEffect } from "react";
 import Loading from "./components/Loading";
 import { useTranslation } from "react-i18next";
+import { API_POST } from "../../axios/constants";
 
 const ListPost = () => {
   const { data, loading, error, fetchPosts } = usePosts();
@@ -13,7 +14,7 @@ const ListPost = () => {
   console.log(error);
 
   useEffect(() => {
-    fetchPosts("posts", "GET");
+    fetchPosts(API_POST.POST, "GET");
   }, []);
 
   return (

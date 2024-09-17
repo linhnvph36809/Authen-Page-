@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { useTranslation } from "react-i18next";
 
-const LayoutPost = () => {
+const MainLayout = () => {
   const { onLogout } = useAuth();
   const { t } = useTranslation();
 
@@ -44,4 +44,4 @@ const LayoutPost = () => {
   );
 };
 
-export default LayoutPost;
+export default MainLayout;

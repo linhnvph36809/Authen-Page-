@@ -3,6 +3,7 @@ import usePosts from "../../hooks/usePosts";
 import FormPost from "./components/Form";
 import Heading from "./components/Heading";
 import Loading from "./components/Loading";
+import { API_POST } from "../../axios/constants";
 
 const AddPost = () => {
   const { loading, error, fetchPosts } = usePosts();
@@ -10,7 +11,7 @@ const AddPost = () => {
 
     console.log(error);
   const onFinish = (value: any) => {
-    fetchPosts("posts", "POST", value);
+    fetchPosts(API_POST.POST, "POST", value);
   };
 
   return (
