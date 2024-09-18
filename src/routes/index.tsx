@@ -20,7 +20,7 @@ const Routes = () => {
           element: <GuestLayout />,
           children: [
             {
-              path: "login",
+              path: "",
               element: <Login />,
             },
           ],
