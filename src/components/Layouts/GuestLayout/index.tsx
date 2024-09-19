@@ -1,9 +1,11 @@
 import { Outlet } from "react-router-dom"
 
 const GuestLayout = () => {
+    const token = localStorage.getItem('accessToken');
+    
     return (
         <div>
-            <Outlet/>
+             {token ? <h1>Home</h1> : <Outlet/>}
         </div>
     )
 }
