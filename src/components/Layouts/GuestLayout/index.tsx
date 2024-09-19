@@ -1,7 +1,8 @@
 import { Outlet } from "react-router-dom"
+import { handlerGetLocal } from "../../../local";
 
 const GuestLayout = () => {
-    const token = localStorage.getItem('accessToken');
+    const token = handlerGetLocal('accessToken');
     
     return (
         <div>
